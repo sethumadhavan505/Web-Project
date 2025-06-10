@@ -16,56 +16,23 @@
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-#ifndef POPPLER_TOC_H
-#define POPPLER_TOC_H
+#ifndef POPPLER_VERSION_H
+#define POPPLER_VERSION_H
 
 #include "poppler-global.h"
 
-#include <vector>
+#define POPPLER_VERSION "24.08.0"
+#define POPPLER_VERSION_MAJOR 24
+#define POPPLER_VERSION_MINOR 8
+#define POPPLER_VERSION_MICRO 0
 
-namespace poppler {
-
-class toc_private;
-class toc_item;
-class toc_item_private;
-
-class POPPLER_CPP_EXPORT toc : public poppler::noncopyable
+namespace poppler
 {
-public:
-    ~toc();
 
-    toc_item *root() const;
-
-private:
-    toc();
-
-    toc_private *d;
-
-    friend class toc_private;
-};
-
-class POPPLER_CPP_EXPORT toc_item : public poppler::noncopyable
-{
-public:
-    typedef std::vector<toc_item *>::const_iterator iterator;
-
-    ~toc_item();
-
-    ustring title() const;
-    bool is_open() const;
-
-    std::vector<toc_item *> children() const;
-    iterator children_begin() const;
-    iterator children_end() const;
-
-private:
-    toc_item();
-
-    toc_item_private *d;
-    friend class toc;
-    friend class toc_private;
-    friend class toc_item_private;
-};
+POPPLER_CPP_EXPORT std::string version_string();
+POPPLER_CPP_EXPORT unsigned int version_major();
+POPPLER_CPP_EXPORT unsigned int version_minor();
+POPPLER_CPP_EXPORT unsigned int version_micro();
 
 }
 
